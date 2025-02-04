@@ -1,1 +1,8 @@
-# Team10
+Class: 3354.002
+Professor: Srimathi Srinivasan
+
+Team Details:
+Team #10
+Team Name: 
+
+Team member names:
