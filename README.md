@@ -1,17 +1,26 @@
-Class: 3354.002
+Class: 3354.002 </br>
 Professor: Srimathi Srinivasan
 
 Team Details:
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Team #10
+Team #10 </br>
+Team Name:  GradeView </br></br>
+**Team names:**
 
-Team Name:  GradeView 
-Team names:
-Kunju Menon
-Amulya Prasad Rayabhagi
-xxxx xxxx
-xxxx xxxx
-xxxx xxxx
-xxxx xxxx
-xxxx xxxx
-xxxx xxxx
+- Kunju Menon
+
+- Amulya Prasad Rayabhagi
+
+- xxxx xxxx
+
+- xxxx xxxx
+
+- xxxx xxxx
+
+- xxxx xxxx
+
+- xxxx xxxx
+
+- xxxx xxxx
+
+Statement of Work:
