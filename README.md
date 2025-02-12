@@ -80,20 +80,17 @@ Our website will target students that are taking multiple courses. More specific
 - Limited Server Capacity
 - Data Security
 </br>
-<b>Milestones:</b>
+<b>Milestones/Due Date: </b>
 </br>
-<!---
-Milestones Due Dates  </br>
-Create a Figma Mockup for the app ----------------------------------------------- 02/24/2025 </br>
-User authentication format ------------------------------------------------------- 03/03/2025 </br>
-Course addition & classification -------------------------------------------------- 03/10/2025 </br>
-Grade calculator System ----------------------------------------------------------- 03/17/2025 </br>
-Notifying user when grade is below 70 ------------------------------------------- 03/24/2025 </br>
-UI/UX enhancements & color-coded --------------------------------------------- 03/31/2025 </br>
-Final integration & debugging ---------------------------------------------------- 04/07/2025 </br>
-App prototype & final ------------------------------------------------------------- 04/14/2025 </br>
-Completion & final ----------------------------------------------------------------- 04/16/2025 </br>
--->
+  
+Milestones -------------------------------------------------------------------------------------------  Due Dates  </br>
+Phase 1: Statement of work ------------------------------------------------------------------------- 02/16/2025 </br>
+Phase 2: Create a prototype of our system --------------------------------------------------------- 03/2/2025 </br>
+Phase 3: Creating the architecture of our system--------------------------------------------------- 03/16/2025 </br>
+Phase 4: Final integration of our work--------------------------------------------------------------- 04/06/2025 </br>
+Phase 5: App prototype & final presentation preperation------------------------------------------ 04/20/2025 </br>
+Phase 6: Project Presentation Demo ---------------------------------------------------------------- 04/26/2025 </br>
+
 
 
 
