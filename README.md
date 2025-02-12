@@ -20,7 +20,7 @@ Team Name:  GradeView </br></br>
 
 - Rizvy Rahman-Danish
 
-- xxxx xxxx
+- Brendon Nguyen
 
 <h1>Statement of Work:</h1>  </br>
 <b>Introduction & Background Information:</b> 
