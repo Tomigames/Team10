@@ -5,3 +5,5 @@ Run the scripts in your own MySQL environment to get the database tables and sto
 Also, i wrote my code with my port number.Might be different for your own machine. Have not hosted the database yet.
 
 You need to type 'npm run dev' on the backend folder through a terminal. Then, you do the same for the frontend folder. These can be both found in the 'gradeview' folder. You can open project in VS Code by selecting the 'gradeview' folder.
+
+The test cases I did were Add, Edit, and Delete Courses
