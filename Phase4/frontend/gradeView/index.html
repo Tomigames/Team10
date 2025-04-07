@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GradeView</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="header">
+    <select>
+      <option value="fall2023">Fall 2023</option>
+      <option value="summer2023">Summer 2023</option>
+      <option value="spring2023">Spring 2023</option>
+      <option value="fall2024">Fall 2024</option>
+      <option value="summer2024">Summer 2024</option>
+      <option value="spring2024">Spring 2024</option>
+      <option value="fall2025">Fall 2025</option>
+      <option value="spring2025" selected>Spring 2025</option>
+      <option value="summer2025">Summer 2025</option>
+    </select>
+
+    <button class="download-btn" onclick="showPopup()">Spring 2025 ⬇</button>
+  </div>
+  <button class="add-course-btn" onclick="addCourse()">+</button>
+
+  <!-- COURSE LIST -->
+  <div id="courses">
+      <!-- Existing courses will be added here dynamically -->
+   </div>
+      <!-- Edit Popup -->
+  
+
+  <!-- POPUP MODAL for Download -->
+  <div id="popup" style="display:none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%);
+       background: #ccc; padding: 30px; border-radius: 10px; z-index: 1000;">
+    <span style="float: right; cursor: pointer;" onclick="hidePopup()">✖</span>
+    <p>Please click the year in which you would like to download your transcript?</p>
+    <select id="yearSelect">
+      <option value="all">All</option>
+      <option value="spring2023">Spring 2023</option>
+      <option value="summer2023">Summer 2023</option>
+      <option value="fall2023">Fall 2023</option>
+      <option value="spring2024">Spring 2024</option>
+      <option value="summer2024">Summer 2024</option>
+      <option value="fall2024">Fall 2024</option>
+      <option value="spring2025">Spring 2025</option>
+      <option value="summer2025">Summer 2025</option>
+      <option value="fall2025">Fall 2025</option>
+    </select>
+    <br><br>
+    <button class="download-btn" onclick="downloadTranscript()">Download</button> 
+<script src="script.js"></script>
+</body>
+</html>

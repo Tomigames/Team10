@@ -1,0 +1,178 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4eee7;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  select, .download-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background-color: #e3a733;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .course {
+    background-color: #837267;
+    color: white;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 5px;
+  }
+
+  .course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .grade-bubble {
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .green { background-color: #7bd946; }
+  .yellow { background-color: #e3ce3f; }
+  .red { background-color: #b82b20; color: white; }
+  .gray { background-color: #444; color: white; }
+
+  .dropdown {
+    cursor: pointer;
+    user-select: none;
+    font-size: 18px;
+    margin-top: 5px;
+  }
+
+  .details {
+    display: none;
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+
+  .details.show {
+    display: block;
+  }
+
+  .section {
+    margin-top: 10px;
+  }
+
+  .section-title {
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+  #editPopup {
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 9999;
+    box-shadow: 0px 0px 15px #000;
+  }
+  #editPopup input {
+    width: 100%;
+    padding: 6px;
+    margin: 5px 0 15px 0;
+    border: none;
+    border-radius: 4px;
+  }
+  #editPopup button {
+    margin-right: 10px;
+  }
+
+  /* Round plus button */
+  .add-course-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .add-course-btn:hover {
+    background-color: #45a049;
+  }
+
+  /* Delete button for each course */
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .delete-btn:hover {
+    background-color: #e53935;
+  }
+  .add-assessment-btn {
+    background-color: #0275d8;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .add-assessment-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .add-assignment-btn {
+    background-color: #5bc0de;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .add-assignment-btn:hover {
+    background-color: #31b0d5;
+  }
+
+  input {
+    width: 50px;
+    padding: 5px;
+    margin: 2px;
+  }
