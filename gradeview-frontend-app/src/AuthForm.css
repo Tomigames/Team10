@@ -1,0 +1,63 @@
+.auth-container {
+    width: 300px;
+    margin: 30px auto;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    background: white;
+    text-align: center;
+  }
+  
+  .auth-input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .auth-button {
+    width: 95%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .auth-button:hover {
+    background-color: #45a049;
+  }
+  
+  .google-button {
+    width: 95%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .google-button:hover {
+    background-color: #357ae8;
+  }
+  .forgot-password {
+    background: none;
+    border: none;
+    color: #007bff;
+    margin-top: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .forgot-password:hover {
+    color: #0056b3;
+  }
+   
