@@ -36,26 +36,31 @@
     width: 95%;
     padding: 10px;
     margin-top: 10px;
-    background-color: #4285F4;
+    margin-left: 8px; 
+    background-color: #202124;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
   
+  
   .google-button:hover {
-    background-color: #357ae8;
+    background-color: #3c4043; /* ✅ Slight lighter on hover */
   }
-  .forgot-password {
-    background: none;
-    border: none;
-    color: #007bff;
-    margin-top: 10px;
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 14px;
+  
+  .google-button img {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 2px; 
   }
+  
+  
   
   .forgot-password:hover {
     color: #0056b3;

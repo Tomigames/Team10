@@ -1,0 +1,74 @@
+/* src/ProfileEdit.css */
+
+.profile-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .profile-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .photo-upload {
+    margin-bottom: 20px;
+  }
+  
+  .photo-placeholder {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 10px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .photo-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .save-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .save-button:hover {
+    background-color: #45a049;
+  }
+  
