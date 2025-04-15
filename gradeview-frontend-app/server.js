@@ -8,9 +8,9 @@ app.use(cors());
 // Connect to MySQL
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",          // <-- Your MySQL username
-  password: "yourpassword", // <-- Your MySQL password
-  database: "gradeview"   // <-- Your database name
+  user: "root",        
+  password: "yourpassword", 
+  database: "gradeview"   
 });
 
 // Test connection
@@ -24,7 +24,7 @@ db.connect((err) => {
 
 // API endpoint to get user profile
 app.get("/api/getUserProfile", (req, res) => {
-  const query = "SELECT * FROM user WHERE UserID = 1"; // Change if you need another user
+  const query = "SELECT * FROM user WHERE UserID = 1"; 
   db.query(query, (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
