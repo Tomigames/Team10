@@ -1,0 +1,8 @@
+"" 
+# Environment files
+.env
+server/.env
+*.env
+
+# Node modules
+node_modules/
