@@ -1,7 +1,6 @@
 // src/ProfileEdit.js
 import { useState, useEffect } from "react";
-import { auth, db } from "./firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore"; 
+import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import "./ProfileEdit.css";
 
@@ -18,37 +17,26 @@ function ProfileEdit() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log("Logged in user UID:", user.uid);
         setUserId(user.uid);
-        const userDocRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userDocRef);
+        setEmail(user.email);
 
-        if (userDoc.exists()) {
-          const data = userDoc.data();
-          setFirstName(data.FirstName || "");
-          setLastName(data.LastName || "");
-          setEmail(data.Email || "");
-          setPhone(data.PhoneNumber || "");
-          setNetID(data.NetID || "");
-          setGPA(data.GPA || "");
-          setCredits(data.Credits || "");
+        try {
+          const res = await fetch(`http://localhost:5000/api/users/${user.email}`);
+          const data = await res.json();
 
-          // Auto-fix missing fields
-          const updates = {};
-          if (!data.NetID) updates.NetID = "";
-          if (!data.PhoneNumber) updates.PhoneNumber = "";
-          if (!data.GPA) updates.GPA = "";
-          if (!data.Credits) updates.Credits = 0;
-
-          if (Object.keys(updates).length > 0) {
-            console.log("Auto-fixing missing fields:", updates);
-            await updateDoc(userDocRef, updates);
+          if (data) {
+            setFirstName(data.FirstName || "");
+            setLastName(data.LastName || "");
+            setNetID(data.NetID || "");
+            setPhone(data.PhoneNumber || "");
+            setGPA(data.GPA || "");
+            setCredits(data.Credits || "");
+          } else {
+            console.log("No profile found for this user.");
           }
-        } else {
-          console.log("No profile found for this UID in Firestore.");
+        } catch (err) {
+          console.error("Error loading profile:", err);
         }
-      } else {
-        console.log("No user is logged in.");
       }
     });
 
@@ -56,22 +44,24 @@ function ProfileEdit() {
   }, []);
 
   const handleSave = async () => {
-    if (!userId) {
-      alert("No user logged in.");
-      return;
-    }
-
     try {
-      const userDocRef = doc(db, "users", userId);
-      await updateDoc(userDocRef, {
-        FirstName: firstName,
-        LastName: lastName,
-        PhoneNumber: phone,
-        NetID: netID,
+      const res = await fetch("http://localhost:5000/api/users/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,         // used to identify the record
+          firstName,
+          lastName,
+          netID,
+          phoneNumber: phone,
+        }),
       });
 
+      const result = await res.json();
+      console.log("Profile updated:", result);
       alert("Profile updated successfully!");
-      console.log("Profile updated:", { firstName, lastName, phone, netID });
     } catch (error) {
       console.error("Error updating profile:", error);
       alert("Failed to update profile.");
@@ -81,8 +71,6 @@ function ProfileEdit() {
   return (
     <div className="profile-container">
       <h2>User Information</h2>
-
-      {/* 🚫 Photo upload section removed */}
 
       <div className="form-group">
         <label>First Name</label>
@@ -122,29 +110,17 @@ function ProfileEdit() {
 
       <div className="form-group">
         <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          disabled
-        />
+        <input type="email" value={email} disabled />
       </div>
 
       <div className="form-group">
         <label>GPA</label>
-        <input
-          type="text"
-          value={gpa}
-          disabled
-        />
+        <input type="text" value={gpa} disabled />
       </div>
 
       <div className="form-group">
         <label>Number of Credits</label>
-        <input
-          type="text"
-          value={credits}
-          disabled
-        />
+        <input type="text" value={credits} disabled />
       </div>
 
       <button className="save-button" onClick={handleSave}>
