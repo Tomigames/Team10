@@ -12,7 +12,7 @@ app.use(express.json()); // Parse JSON request bodies
 const dbConfig = {
     host: "localhost",
     user: "root",
-    password: "Hharshavarthan24",
+    password: "password",
     database: "gradeview"
 };
 
