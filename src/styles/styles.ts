@@ -27,19 +27,20 @@ export const Styles = createGlobalStyle`
         padding:0;
         border: 0;
         outline: 0;
-        background: #fff;
+        background: linear-gradient(45deg, rgb(237, 151, 108), rgb(217, 170, 99), rgb(255, 130, 92));
+
         overflow-x: hidden;
     }
 
     a:hover {
-        color: #18216d;
+        color:rgb(186, 94, 28);
     }
 
     input,
     textarea {
         border-radius: 4px;
         border: 0;
-        background: rgb(241, 242, 243);
+        background: rgb(243, 241, 243);
         transition: all 0.3s ease-in-out;  
         outline: none;
         width: 100%;  
@@ -47,7 +48,7 @@ export const Styles = createGlobalStyle`
 
         :focus-within {
             background: none;
-            box-shadow: #2e186a 0px 0px 0px 1px;
+            box-shadow:rgb(225, 131, 43) 0px 0px 0px 1px;
         }
     }
 
@@ -58,7 +59,7 @@ export const Styles = createGlobalStyle`
     h5,
     h6 {
         font-family: 'Motiva Sans Bold', serif;
-        color: #18216d;
+        color:rgb(253, 253, 253);
         font-size: 56px;
         line-height: 1.18;
 
@@ -72,7 +73,7 @@ export const Styles = createGlobalStyle`
     }
 
     p {
-        color: #18216d;
+        color:rgb(253, 253, 253);
         font-size: 21px;        
         line-height: 1.41;
     }
@@ -84,10 +85,10 @@ export const Styles = createGlobalStyle`
     a {
         text-decoration: none;
         outline: none;
-        color: #2E186A;
+        color:rgb(253, 253, 253);
 
         :hover {
-            color: #2e186a;
+            color:rgb(253, 253, 253);
         }
     }
     

@@ -41,7 +41,7 @@ export const Burger = styled("div")`
   display: none;
 
   svg {
-    fill: #2e186a;
+    fill:rgb(227, 84, 23);
   }
 `;
 
@@ -59,7 +59,7 @@ export const Menu = styled("h5")`
 
 export const CustomNavLinkSmall = styled(NavLink)`
   font-size: 1.2rem;
-  color: #18216d;
+  color: rgb(255, 252, 250);
   transition: color 0.2s ease-in;
   margin: 0.5rem 2rem;
 
@@ -84,12 +84,15 @@ export const Outline = styled(MenuOutlined)`
 export const Span = styled("span")`
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  
 
   &:hover,
   &:active,
   &:focus {
-    color: rgb(255, 130, 92);
+    color: rgb(108, 42, 22);
     text-underline-position: under;
-    text-decoration: rgb(255, 130, 92) wavy underline;
+    text-decoration: rgb(97, 41, 25) wavy underline;
   }
 `;
+
+

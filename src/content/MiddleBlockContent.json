@@ -1,6 +1,6 @@
 {
-    "title": "Introduce your product quickly & effectively",
-    "text": "Landy comes with multi-lingual support, all of the content is stored in the JSON files, so that you can manage the texts without having any prior knowledge in developing web applications using React.js.",
-    "button": "Get started"
+    "title": "What is Gradview?",
+      
+    "text": "GradeView is an app aimed to help students evaluate their academic performance by providing a user-friendly way to track grades throughout the semester as well as calculate cumulative GPAs. By notifying students of grade drops immediately, GradeView allows students to dynamically monitor their grades and take action to seek help if necessary."
   }
   
