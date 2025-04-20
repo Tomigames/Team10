@@ -1,11 +1,9 @@
 {
-    "host": "localhost",
-    "port": 3306,
-    "user": "root",
-    "password": "HowToView1!",
-    "database": "gradeview",
-    "waitForConnections": true,
-    "connectionLimit": 10,
-    "queueLimit": 0
-  }
-  
+  "host": "localhost",
+  "user": "root",
+  "password": "HowToView1!",
+  "database": "gradeview",
+  "waitForConnections": true,
+  "connectionLimit": 10,
+  "queueLimit": 0
+}
