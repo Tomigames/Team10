@@ -1,0 +1,177 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4eee7;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body, #root {
+    height: 100%;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background-color: #e3a733;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #c98f1c;
+  }
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .summary-box {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .notif-feed-scroll {
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .notif-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .notification-feed-item {
+    background-color: white;
+    padding: 10px 16px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .notif-text {
+    flex-grow: 1;
+    padding-right: 10px;
+  }
+  
+  .notif-dismiss {
+    background-color: #e3a733;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  
+    /* center the X */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .notif-dismiss:hover {
+    background-color: #c98f1c;
+  }
+  
+  .hoverable {
+    transition: transform 0.1s ease, background-color 0.2s ease;
+  }
+  
+  .hoverable:hover {
+    transform: scale(1.01);
+    background-color: #f9f1dd;
+  }
+
+  .notif-feed-scroll {
+    height: 100%;
+    min-height: calc(100vh - 210px); /* fills vertical space nicely */
+    max-height: calc(100vh - 210px); /* ensures scroll stays inside view */
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .settings-page {
+    padding: 30px;
+    min-height: 100vh;
+    background-color: #f4eee7;
+  }
+  
+  .settings-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #444;
+  }
+  
+  .trigger-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .checkbox-col {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  
+  .button-row {
+    margin-bottom: 15px;
+  }
+  
+  button {
+    background-color: #e3a733;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #c89028;
+  }
+  
+  .success-text {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .back-btn {
+    margin-top: 25px;
+    display: inline-block;
+  }
+  
