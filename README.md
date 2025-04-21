@@ -94,4 +94,72 @@ Phase 6: Project Presentation Demo ---------------------------------------------
 
 
 
+<h1>This is the setup to run our program.</h1>
+
+## Technologies Used
+
+* **Frontend:** React.js
+* **Backend:** Node.js
+* **Database:** MySQL
+
+## Getting Started
+
+Follow the instructions below to set up and run both the frontend and backend of the application.
+
+### Frontend Setup
+
+1.  **Navigate to the Frontend Directory:**
+    Open your terminal or command prompt and navigate to the directory containing the frontend code.
+
+    ```bash
+    cd frontend
+    ```
+
+2.  **Install Dependencies:**
+    Install the necessary npm packages by running:
+
+    ```bash
+    npm install
+    ```
+
+3.  **Run the Frontend Development Server:**
+    Start the React development server with the command:
+
+    ```bash
+    npm start
+    ```
+
+    This will usually open the application in your web browser at `http://localhost:3000`.
+
+### Backend Setup
+
+1.  **Ensure MySQL is Running:**
+    Make sure your MySQL database server is running in the background before proceeding.
+
+2.  **Execute Stored Procedures:**
+    Navigate to the `routines` directory (or wherever your SQL routine files are located). Using a MySQL client like MySQL Workbench, connect to your database and execute the SQL scripts in these files. This step is essential to ensure the backend can utilize the required stored procedures.
+
+3.  **Navigate to the Backend Directory (or Root):**
+    Open a new terminal or command prompt and navigate to the root directory of your project or the specific backend directory if your project is structured that way.
+
+    ```bash
+    cd backend  # If your backend code is in a 'backend' folder
+    # or
+    cd ..       # If your backend code is in the project root
+    ```
+
+4.  **Run the Backend Server:**
+    Start the Node.js backend server using the command:
+
+    ```bash
+    node server.js
+    ```
+
+    Replace `server.js` with the actual name of your main backend server file if it's different. The backend server will typically run on a specific port (e.g., `http://localhost:5000`), which will be defined in your backend code.
+
+Once both the frontend and backend are running, you should be able to access the full application through your web browser at the address provided by the frontend development server (usually `http://localhost:3000`). Ensure that your backend API endpoints are correctly configured in your frontend to communicate with the Node.js server.
+
+
+
+
 
