@@ -11,7 +11,7 @@ app.use(express.json());
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'HowToView1!',
+  password: 'Biryani123',
   database: 'gradeview',
   waitForConnections: true,
   connectionLimit: 10,
@@ -119,15 +119,27 @@ app.put('/api/courses/:courseId/weights', async (req, res) => {
 
 // --- all your other course‐and‐assessment endpoints (from the larger server.js) :contentReference[oaicite:10]{index=10}&#8203;:contentReference[oaicite:11]{index=11} ---
 
-// fetch all courses for a user
+// fetch courses for a user
 app.get('/', async (req, res) => {
-  const userId = req.query.userId;
+  const { semester, year, userId } = req.query;
   if (!userId) return res.status(400).json({ error: 'User ID is required to fetch courses.' });
 
   try {
-    const [data] = await pool.execute(
-      'SELECT * FROM course WHERE UserID = ?', [userId]
-    );
+    let sql = 'SELECT * FROM course WHERE UserID = ?';
+    const params = [userId];
+
+    if (semester && semester !== 'All') {
+      sql += ' AND Semester = ?';
+      params.push(semester);
+    }
+
+    if (year && year !== 'All') {
+      sql += ' AND Year = ?';
+      params.push(year);
+    }
+
+    const [data] = await pool.execute(sql, params);
+
     res.json(data);
   } catch (err) {
     console.error('Error fetching courses:', err);
@@ -458,5 +470,5 @@ app.get('/course/:id', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => console.log(`Backend listening on port ${PORT}`));

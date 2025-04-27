@@ -29,7 +29,7 @@ const ProtectedRoute = ({ children }) => {
 
 /* ------------ API Helper ------------ */
 export const api = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE || 'http://localhost:5000',
+  baseURL: process.env.REACT_APP_API_BASE || 'http://localhost:5050',
   headers: { 'Content-Type': 'application/json' }
 });
 
@@ -402,31 +402,38 @@ const CourseItem = ({ c, onDelete, onEdit }) => {
     </div>
   );
 };
+
 function CourseList() {
+  const [allCourses, setAllCourses] = useState([]);
   const [courses, setCourses] = useState([]);
   const [sem, setSem] = useState('All'), [yr,setYr]=useState('All');
   const [openSem, setOpenSem] = useState(false), [openYr,setOpenYr]=useState(false);
   const { userId } = useContext(UserContext);
   const nav = useNavigate();
+
   const fetch = () => {
     const qs = [];
-    if (sem!=='All') qs.push(`semester=${sem}`);
-    if (yr!=='All') qs.push(`year=${yr}`);
     if (userId) qs.push(`userId=${userId}`);
     
-    console.log('Fetching course data...');
+    console.log('Fetching ALL course data...');
     
-    api.get(`/${qs.length?`?${qs.join('&')}`:''}`)
+    api.get(`/${qs.length ? `?${qs.join('&')}` : ''}`)
        .then(r => {
-         console.log('Course data fetched:', r.data.map(c => ({
-           courseId: c.CourseID,
-           courseName: c.CourseName,
-           overallGrade: c.OverallGrade
-         })));
-         setCourses(r.data);
+         console.log('All Course data fetched:', r.data);
+         setAllCourses(r.data);
        });
   };
-  useEffect(fetch, [sem,yr,userId]);
+
+  useEffect(fetch, [userId]);
+
+  // filters courses based on semesters
+  useEffect(() => {
+    if (!allCourses.length) return;
+    let filtered = [...allCourses];
+    if (sem !== 'All') filtered = filtered.filter(c => c.Semester === sem);
+    if (yr !== 'All') filtered = filtered.filter(c => c.Year === yr);
+    setCourses(filtered);
+  }, [sem, yr, allCourses]);
   
   // Add event listener for refreshCourseList event
   useEffect(() => {
@@ -438,8 +445,14 @@ function CourseList() {
     window.addEventListener('refreshCourseList', handleRefreshCourseList);
     return () => window.removeEventListener('refreshCourseList', handleRefreshCourseList);
   }, []);
-  
-  const unique = (field, all) => ['All', ...Array.from(new Set(all.map(c=>c[field])))] ;
+
+  const unique = (field) => ['All', ...Array.from(new Set(allCourses.map(c => c[field])))];
+  const uniqueYears = () => {
+    const years = Array.from(new Set(allCourses.map(c => c.Year)));
+    years.sort((a, b) => a - b); // Sorts years ascending (2023, 2024, 2025)
+    return ['All', ...years];
+  };
+
   return (
     <div className="course-container">
       <div className="header">
@@ -452,7 +465,7 @@ function CourseList() {
         <div className={`semester-download ${openYr?'open':''}`}>
           <button className="download-button" onClick={()=>setOpenYr(o=>!o)}>{yr} v</button>
           {openYr && <div className="dropdown-content">
-            {unique('Year',courses).map(y=><button key={y} className={y===yr?'active':''} onClick={()=>{setYr(y);setOpenYr(false);}}>{y}</button>)}
+            {uniqueYears().map(y=><button key={y} className={y===yr?'active':''} onClick={()=>{setYr(y);setOpenYr(false);}}>{y}</button>)}
           </div>}
         </div>
         <button className="add-button" onClick={()=>nav('/create')}>Add Course</button>
