@@ -8,7 +8,7 @@ const NotifTrigger = ({ goBack }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5050/api/notification-triggers')
+    fetch('http://127.0.0.1:5051/api/notification-triggers')
       .then(res => res.json())
       .then(data => {
         if (data) {
@@ -20,7 +20,7 @@ const NotifTrigger = ({ goBack }) => {
   }, []);
 
   const handleSave = () => {
-    fetch('http://127.0.0.1:5050/api/notification-triggers', {
+    fetch('http://127.0.0.1:5051/api/notification-triggers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ lowGradeAlert, newGradeAlert, followUpAlert }),

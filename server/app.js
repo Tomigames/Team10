@@ -683,7 +683,7 @@ app.get('/course/:id', async (req, res) => {
 const settingsManager = new NotificationSettingsClass({
   host: 'localhost',
   user: 'root',
-  password: 'my$qlWorkbench2005',
+  password: 'Biryani123',
   database: 'gradeview'
 });
 
@@ -739,5 +739,5 @@ app.post('/api/notification-triggers', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5051;
 app.listen(PORT, () => console.log(`Backend listening on port ${PORT}`));

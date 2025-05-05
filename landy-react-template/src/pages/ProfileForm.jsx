@@ -69,7 +69,7 @@ const ProfileForm = ({ setActiveTab }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5050/api/users', formData);
+      const response = await axios.post('http://localhost:5051/api/users', formData);
       setMessage({
         text: 'User registered successfully!',
         type: 'success'

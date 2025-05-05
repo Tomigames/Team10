@@ -7,7 +7,7 @@ const GpaGoalAlerts = ({ goBack }) => {
   const [alertMessage, setAlertMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5050/api/gpa-goal')
+    fetch('http://127.0.0.1:5051/api/gpa-goal')
       .then(res => res.json())
       .then(data => {
         if (data) {
@@ -18,7 +18,7 @@ const GpaGoalAlerts = ({ goBack }) => {
   }, []);
 
   const handleSave = () => {
-    fetch('http://127.0.0.1:5050/api/gpa-goal', {
+    fetch('http://127.0.0.1:5051/api/gpa-goal', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ goal, preference: notificationPref }),

@@ -17,7 +17,7 @@ function EditCourse() {
     if (userId && id) { // Ensure userId and id are available before fetching
       //setLoading(true);
       setError(null);
-      axios.get(`http://localhost:5050/course/${id}?userId=${userId}`) // Include userId as a query parameter
+      axios.get(`http://localhost:5051/course/${id}?userId=${userId}`) // Include userId as a query parameter
         .then(res => {
           setCourse(res.data);
           setLoading(false);
@@ -37,7 +37,7 @@ function EditCourse() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:5050/course/${id}`, {
+    axios.put(`http://localhost:5051/course/${id}`, {
       UserID: userId, // Send the userId in the request body for updating
       CourseName: course.CourseName,
       Instructor: course.Instructor,

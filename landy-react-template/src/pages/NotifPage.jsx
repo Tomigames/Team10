@@ -36,11 +36,11 @@ const NotifPage = ({ goTo }) => {
       '🧠 Learning module completed'
     ]);
   
-    fetch('http://127.0.0.1:5050/api/gpa-goal')
+    fetch('http://127.0.0.1:5051/api/gpa-goal')
       .then(res => res.json())
       .then(data => setGpaGoal(data));
   
-    fetch('http://127.0.0.1:5050/api/notification-triggers')
+    fetch('http://127.0.0.1:5051/api/notification-triggers')
       .then(res => res.json())
       .then(data => setTriggers(data));
   }, []);
