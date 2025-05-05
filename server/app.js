@@ -500,8 +500,8 @@ app.post('/api/courses/:courseId/assessments', async (req, res) => {
     
     // Insert the assessment
     await conn.execute(
-      'INSERT INTO assessment (UserID, CourseID, WeightID, AssessmentName, IndividualGrade) VALUES (?, ?, ?, ?, ?)',
-      [userId, courseId, weightId, assessmentName, individualGrade]
+      'CALL add_assessment(?, ?, ?, ?, ?)',
+        [userId, courseId, weightId, assessmentName, individualGrade]
     );
     
     // Recalculate the course grade
@@ -544,8 +544,8 @@ app.put('/api/assessments/:assessmentId', async (req, res) => {
     
     // Update the assessment
     await conn.execute(
-      'UPDATE assessment SET AssessmentName = ?, IndividualGrade = ? WHERE AssessmentID = ? AND UserID = ?',
-      [assessmentName, individualGrade, assessmentId, userId]
+      'CALL update_assessment(?, ?, ?, ?, ?)',
+      [assessmentId, userId, courseId, assessmentName, individualGrade]
     );
     
     // Recalculate the course grade
@@ -587,8 +587,8 @@ app.delete('/api/assessments/:assessmentId', async (req, res) => {
     
     // Delete the assessment
     await conn.execute(
-      'DELETE FROM assessment WHERE AssessmentID = ? AND UserID = ?',
-      [assessmentId, userId]
+      'CALL delete_assessment(?, ?, ?)',
+      [assessmentId, userId, courseId]
     );
     
     // Recalculate the course grade
