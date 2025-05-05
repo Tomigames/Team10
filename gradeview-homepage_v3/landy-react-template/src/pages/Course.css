@@ -1,0 +1,276 @@
+.course-container {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .semester-dropdown,
+  .semester-download {
+    display: inline-block;
+    position: relative; /* Added for dropdown positioning */
+  }
+  
+  .semester-button,
+  .download-button {
+    background-color: #ffc107;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-icon,
+  .download-icon {
+    margin-left: 5px;
+  }
+  
+  .course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .course-item {
+    background-color: #222;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Make sure course-item is a positioning context */
+    margin-bottom: 20px;
+  }
+  
+  .course-header {
+    display: flex;
+    justify-content: space-between; /* Push elements to the edges */
+    align-items: flex-start; /* Vertically align items to the start */
+    cursor: pointer;
+    margin-bottom: 10px; /* Add some space below the header */
+    width: 100%; /* Ensure full width for correct button positioning */
+  }
+  
+  .course-header .header-actions {
+    position: relative; /* relative positioning */
+    top: 0; /* Reset top */
+    transform: none; /* Remove vertical centering */
+    right: 0; /* Align to the right */
+    display: flex;
+    gap: 10px; /* Increased gap */
+    z-index: 2; /* Ensure buttons are above grade */
+    align-items: flex-start; /* Vertically align with course details */
+  }
+  
+  
+  .course-details {
+    flex-grow: 1;
+    margin-right: auto; /* Push course details to the left */
+    display: flex; /* Use flexbox to align name and instructor */
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start (top) */
+  }
+  
+  .course-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .instructor {
+    font-size: 0.9em;
+    color: #ccc;
+  }
+  
+  .grade {
+    width: 60px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: black;
+    order: -1; /* Place grade to the left */
+    margin-right: 10px;
+  }
+  
+  .course-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .edit-button,
+  .delete-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex; /* Use flexbox for grade positioning */
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Needed for absolute positioning of grade */
+    overflow: visible;
+  }
+  
+  .edit-button {
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  .edit-button:hover {
+    background-color: #e0a800;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    margin-right: 20px;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  .edit-button,
+  .delete-button {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .semester-dropdown {
+    position: relative;
+  }
+  
+  .semester-download {
+    /* Ensure this has relative positioning */
+    position: relative;
+  }
+  
+  .semester-button,
+  .download-button {
+    /* Apply consistent button styling */
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-icon {
+    margin-left: 5px;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    top: 100%;
+    /* Position below the button */
+    left: 0;
+    z-index: 10;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+  
+  .semester-dropdown.open .dropdown-content,
+  .semester-download.open .dropdown-content{
+    display: block;
+  }
+  
+  .dropdown-content button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-content button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .dropdown-content button.active {
+    background-color: #e0e0e0;
+    font-weight: bold;
+  }
+  
+  .course-dropdown {
+    margin-top: 10px;
+    padding: 10px;
+    /* Removed position: absolute */
+    left: 0;
+    right: 0;
+    background-color: #060505;
+    border-top: 1px solid #ccc;
+    /* Removed width: calc(100% + 30px); */
+  }
+  
+  .weight-sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .weight-section {
+    margin-bottom: 15px;
+  }
+  
+  .weight-header {
+    background-color: #222; /* Changed to black */
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .weight-header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .weight-type {
+    font-weight: bold;
+  }
+  
+  .assessment-list {
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .assessment-item {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    color: white; /* Changed assessment item font color */
+    background-color: #222;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
