@@ -33,7 +33,11 @@ const CourseGrades = ({ userId }) => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(`http://localhost:5050/?userId=${userId}`);
+        const response = await axios.get(`http://localhost:5051/`, {
+          headers: {
+            'x-user-id': userId
+          }
+        });
         if (response.data && response.data.length > 0) {
           setCourses(response.data);
           // Set the first course as default selected
@@ -165,8 +169,12 @@ const CourseGrades = ({ userId }) => {
        
         // fetch course details and assessments
         const [courseRes, assessmentsRes] = await Promise.all([
-          axios.get(`http://localhost:5050/api/courses/${selectedCourseId}?userId=${userId}`),
-          axios.get(`http://localhost:5050/api/courses/${selectedCourseId}/assessments?userId=${userId}`)
+          axios.get(`http://localhost:5050/api/courses/${selectedCourseId}`, {
+            headers: { 'x-user-id': userId }
+          }),
+          axios.get(`http://localhost:5050/api/courses/${selectedCourseId}/assessments`, {
+            headers: { 'x-user-id': userId }
+          })
         ]);
 
         // verify valid data
