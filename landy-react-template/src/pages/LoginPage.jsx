@@ -15,17 +15,27 @@ function LoginPage() {
     e.preventDefault();
     setError('');
 
-    // **Replace this with your actual authentication logic**
-    // Here, we'll just simulate a successful login for a specific user
-    if (username === 'testuser' && password === 'password') {
-      const authenticatedUserId = 1; // Example user ID from your backend
-      updateUser(authenticatedUserId);
-      localStorage.setItem('userId', authenticatedUserId);
+    try {
+      const response = await fetch('http://localhost:5050/api/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
     
-      navigate('/mainhome');
-    } else {
-      setError('Invalid username or password');
+      if (response.ok) {
+        const data = await response.json();
+        updateUser(data.userId);
+        localStorage.setItem('userId', data.userId);
+        navigate('/mainhome');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Login failed');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Server error. Please try again later.');
     }
+    
   };
 
   return (
@@ -70,8 +80,13 @@ function LoginPage() {
                     required
                   />
                 </div>
+                <p style={{ fontSize: '0.9em', textAlign: 'center', marginBottom: '10px', marginTop: '10px', marginRight: '455px' }}>
+                  Don’t have an account? <a href="/signup">Sign up</a>
+                </p>
                 <button role="button" className="button">Login</button>
               </form>
+          
+
             </div>
           </div>
         </div>

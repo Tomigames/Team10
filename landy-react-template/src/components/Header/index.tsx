@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "../../pages/UserContext";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation, TFunction } from "react-i18next";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
-import { useNavigate } from "react-router-dom";
 import {
   HeaderSection,
   LogoContainer,
@@ -19,37 +20,43 @@ import {
 
 const Header = ({ t }: { t: TFunction }) => {
   const [visible, setVisibility] = useState(false);
-  const nav = useNavigate(); 
+  const nav = useNavigate();
+  const location = useLocation();
+  const { userId } = useContext(UserContext) as any;
+
+  // Hide header if user is not logged in OR current route is /login
+  if (!userId || location.pathname === "/login") {
+    return null;
+  }
 
   const toggleButton = () => {
     setVisibility(!visible);
   };
 
   const handleWhatIfCalculatorClick = () => {
-    nav("/calculator"); // Navigate to /calculator route
-    setVisibility(false); // Close the menu (if it's open)
+    nav("/calculator");
+    setVisibility(false);
   };
 
   const handleUserProfileClick = () => {
-    nav("/profile"); // Navigate to /calculator route
-    setVisibility(false); // Close the menu (if it's open)
+    nav("/profile");
+    setVisibility(false);
   };
 
   const handleUserNotifsClick = () => {
-    nav("/notifs"); // Navigate to /calculator route
-    setVisibility(false); // Close the menu (if it's open)
+    nav("/notifs");
+    setVisibility(false);
   };
+
   const handleCoursesClick = () => {
-    nav("/courses"); // Navigate to /calculator route
-    setVisibility(false); // Close the menu (if it's open)
+    nav("/courses");
+    setVisibility(false);
   };
 
   const MenuItem = () => {
     const scrollTo = (id: string) => {
       const element = document.getElementById(id) as HTMLDivElement;
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
+      element.scrollIntoView({ behavior: "smooth" });
       setVisibility(false);
     };
     return (
@@ -66,13 +73,9 @@ const Header = ({ t }: { t: TFunction }) => {
         <CustomNavLinkSmall onClick={handleUserNotifsClick}>
           <Span>{t("Notifications")}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall
-          style={{ width: "180px" }}
-          onClick={handleUserProfileClick}
-        >
+        <CustomNavLinkSmall style={{ width: "180px" }} onClick={handleUserProfileClick}>
           <Span>
             <Button color="rgb(200, 100, 57)">{t("User Profile")}</Button>
-
           </Span>
         </CustomNavLinkSmall>
       </>
