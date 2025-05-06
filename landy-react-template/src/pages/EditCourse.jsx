@@ -60,27 +60,27 @@ function EditCourse() {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5" >
       <h2>Edit Course</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="CourseName" className="form-label">Course Name</label>
+          <label htmlFor="CourseName" className="form-label" style={{ color: 'black' }}>Course Name</label>
           <input type="text" className="form-control" id="CourseName" name="CourseName" value={course.CourseName} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="Instructor" className="form-label">Instructor</label>
+          <label htmlFor="Instructor" className="form-label" style={{ color: 'black' }}>Instructor</label>
           <input type="text" className="form-control" id="Instructor" name="Instructor" value={course.Instructor} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="Semester" className="form-label">Semester</label>
+          <label htmlFor="Semester" className="form-label" style={{ color: 'black' }}>Semester</label>
           <input type="text" className="form-control" id="Semester" name="Semester" value={course.Semester} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="Year" className="form-label">Year</label>
+          <label htmlFor="Year" className="form-label" style={{ color: 'black' }}>Year</label>
           <input type="text" className="form-control" id="Year" name="Year" value={course.Year} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="CreditHours" className="form-label">Credit Hours</label>
+          <label htmlFor="CreditHours" className="form-label" style={{ color: 'black' }}>Credit Hours</label>
           <input type="number" className="form-control" id="CreditHours" name="CreditHours" value={course.CreditHours} onChange={handleChange} required />
         </div>
         <button type="submit" className="btn btn-primary">Save Changes</button>
