@@ -739,5 +739,28 @@ app.post('/api/notification-triggers', async (req, res) => {
   }
 });
 
+
+
+
+app.get('/api/transcripts/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    const [rows] = await pool.query(
+      'SELECT CumulativeGPA FROM transcript WHERE UserID = ?',
+      [userId]
+    );
+ 
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Transcript not found' });
+    }
+ 
+    res.json(rows[0]);
+  } catch (err) {
+    console.error('Error fetching GPA:', err);
+    res.status(500).json({ error: 'Failed to fetch GPA' });
+  }
+});
+
+
 const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => console.log(`Backend listening on port ${PORT}`));
