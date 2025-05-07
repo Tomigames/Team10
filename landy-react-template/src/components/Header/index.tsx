@@ -53,6 +53,12 @@ const Header = ({ t }: { t: TFunction }) => {
     setVisibility(false);
   };
 
+  // Add handler for transcript navigation
+  const handleTranscriptClick = () => {
+    nav("/transcript");
+    setVisibility(false);
+  };
+
   const MenuItem = () => {
     const linkStyle = {
       fontSize: "16px",
@@ -83,6 +89,9 @@ const Header = ({ t }: { t: TFunction }) => {
       </CustomNavLinkSmall>
       <CustomNavLinkSmall onClick={handleUserProfileClick} style={linkStyle}>
         <Span style={spanStyle}>{t("User Profile")}</Span>
+      </CustomNavLinkSmall>
+      <CustomNavLinkSmall onClick={handleTranscriptClick} style={linkStyle}>
+        <Span style={spanStyle}>{t("Transcript")}</Span>
       </CustomNavLinkSmall>
         <CustomNavLinkSmall style={{ width: "180px" }} onClick={handleUserProfileClick}>
           <Span>

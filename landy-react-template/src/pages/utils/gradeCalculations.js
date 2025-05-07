@@ -27,10 +27,11 @@ export const calculateSectionAverage = (assessments) => {
 /**
  * Calculate the overall course grade based on weighted section averages
  * @param {Object} courseData - Course data with weights and assessments
- * @returns {number} - The overall course grade
+ * @param {boolean} useCurrentAverage - If true, only consider weights with assessments
+ * @returns {Object} - Object containing grade and totalWeight used
  */
-export const calculateOverallGrade = (courseData) => {
-  if (!courseData || !courseData.weights || !courseData.assessments) return 0;
+export const calculateOverallGrade = (courseData, useCurrentAverage = false) => {
+  if (!courseData || !courseData.weights || !courseData.assessments) return { grade: 0, totalWeight: 0 };
   
   let totalWeightedGrade = 0;
   let totalWeight = 0;
@@ -50,15 +51,25 @@ export const calculateOverallGrade = (courseData) => {
     const sectionAverage = calculateSectionAverage(sectionAssessments);
     const weightPercentage = parseFloat(weight.WeightPercentage) || 0;
     
-    totalWeightedGrade += sectionAverage * (weightPercentage / 100);
-    totalWeight += weightPercentage;
+    // Only include weights that have assessments when useCurrentAverage is true
+    if (!useCurrentAverage || sectionAssessments.length > 0) {
+      totalWeightedGrade += sectionAverage * (weightPercentage / 100);
+      totalWeight += weightPercentage;
+    }
   });
   
-  // If total weight is 0, return 0 to avoid division by zero
-  const result = totalWeight > 0 ? totalWeightedGrade : 0;
+  // Calculate grade differently based on mode:
+  // - For current average: normalize by the weights of sections with assessments
+  // - For cumulative: use the raw weighted sum (don't normalize)
+  const grade = useCurrentAverage 
+    ? (totalWeight > 0 ? (totalWeightedGrade * 100 / totalWeight) : 0)
+    : totalWeightedGrade;
   
   // Ensure the result is a number
-  return isNaN(result) ? 0 : result;
+  return {
+    grade: isNaN(grade) ? 0 : grade,
+    totalWeight
+  };
 };
 
 /**
@@ -74,4 +85,4 @@ export const getGradeColor = (grade) => {
   if (numericGrade >= 70) return 'yellow';
   if (numericGrade > 0) return 'red';
   return 'gray';
-}; 
+};

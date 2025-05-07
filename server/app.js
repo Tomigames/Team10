@@ -245,6 +245,28 @@ app.get('/api/users/:userId/credits', async (req, res) => {
   }
 });
 
+app.put('/api/users/:userId/credits', async (req, res) => {
+  const headerUserId = parseInt(req.headers['x-user-id'], 10);
+  const paramUserId = parseInt(req.params.userId, 10);
+  const { completed } = req.body;
+
+  if (!headerUserId) return res.status(401).json({ error: 'Unauthenticated' });
+  if (headerUserId !== paramUserId) return res.status(403).json({ error: 'Forbidden' });
+
+  try {
+    await pool.execute(
+      'UPDATE transcript SET CreditsCompleted = ? WHERE UserID = ?',
+      [completed, paramUserId]
+    );
+    
+    const totalReq = 120;
+    res.json({ completed, remaining: Math.max(0, totalReq - completed) });
+  } catch (err) {
+    console.error('Error updating credits:', err);
+    res.status(500).json({ error: 'Failed to update credit information' });
+  }
+});
+
 // --- grade‐weights endpoints :contentReference[oaicite:8]{index=8}&#8203;:contentReference[oaicite:9]{index=9} ---
 app.get('/api/courses/:courseId/weights', async (req, res) => {
   const userId   = parseInt(req.headers['x-user-id'], 10);
@@ -681,10 +703,10 @@ app.get('/course/:id', async (req, res) => {
 // ------------------------------------- NOTIFS ENDPOINTS ------------------------------
 // 📦 Notification Settings Manager
 const settingsManager = new NotificationSettingsClass({
-  host: 'localhost',
-  user: 'root',
-  password: 'my$qlWorkbench2005',
-  database: 'gradeview'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD, // No default password!
+  database: process.env.DB_NAME || 'gradeview'
 });
 
 // 📄 Middleware to log incoming requests
@@ -741,23 +763,49 @@ app.post('/api/notification-triggers', async (req, res) => {
 
 
 
-
 app.get('/api/transcripts/:userId', async (req, res) => {
-  const userId = req.params.userId;
+  const userId = parseInt(req.params.userId, 10);
+  const headerUserId = parseInt(req.headers['x-user-id'], 10);
+
+  if (!headerUserId) {
+    return res.status(401).json({ error: 'Unauthenticated' });
+  }
+
+  if (headerUserId !== userId) {
+    return res.status(403).json({ error: 'Unauthorized to access this transcript' });
+  }
+
   try {
-    const [rows] = await pool.query(
-      'SELECT CumulativeGPA FROM transcript WHERE UserID = ?',
+    const [rows] = await pool.execute(
+      `SELECT t.CumulativeGPA, t.CreditsCompleted, 
+              c.CourseName, c.Semester, c.Year, c.OverallGrade
+       FROM transcript t
+       LEFT JOIN course c ON t.UserID = c.UserID
+       WHERE t.UserID = ?
+       ORDER BY c.Year DESC, c.Semester DESC`,
       [userId]
     );
- 
+
     if (rows.length === 0) {
       return res.status(404).json({ error: 'Transcript not found' });
     }
- 
-    res.json(rows[0]);
+
+    // Format the response
+    const transcript = {
+      CumulativeGPA: rows[0].CumulativeGPA,
+      CreditsCompleted: rows[0].CreditsCompleted,
+      courses: rows.map(row => ({
+        courseName: row.CourseName,
+        semester: row.Semester,
+        year: row.Year,
+        grade: row.OverallGrade
+      })).filter(course => course.courseName) // Remove null course entries
+    };
+
+    res.json(transcript);
   } catch (err) {
-    console.error('Error fetching GPA:', err);
-    res.status(500).json({ error: 'Failed to fetch GPA' });
+    console.error('Error fetching transcript:', err);
+    res.status(500).json({ error: 'Failed to fetch transcript' });
   }
 });
 

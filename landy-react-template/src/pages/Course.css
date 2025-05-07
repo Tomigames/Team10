@@ -2,24 +2,28 @@
     font-family: sans-serif;
     padding: 20px;
     background-color: #f0f0f0;
-  }
+}
   
-  .header {
+.header {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 20px;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  
-  .semester-dropdown,
-  .semester-download {
-    display: inline-block;
-    position: relative; /* Added for dropdown positioning */
-  }
-  
-  .semester-button,
-  .download-button {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.semester-dropdown,
+.semester-download {
+    position: relative;
+    min-width: 120px;
+}
+
+.semester-button,
+.download-button {
+    width: 100%;
     background-color: #ffc107;
     color: black;
     padding: 10px 20px;
@@ -29,20 +33,48 @@
     font-weight: bold;
     display: flex;
     align-items: center;
-  }
-  
-  .dropdown-icon,
-  .download-icon {
-    margin-left: 5px;
-  }
-  
-  .course-list {
+    justify-content: space-between;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+.dropdown-content button {
+    width: 100%;
+    padding: 8px 12px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: black;
+}
+
+.dropdown-content button:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-content button.active {
+    background-color: #e3a733;
+    color: white;
+}
+
+.course-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-  
-  .course-item {
+}
+
+.course-item {
     background-color: #222;
     color: white;
     padding: 15px;
@@ -52,18 +84,18 @@
     align-items: center;
     position: relative; /* Make sure course-item is a positioning context */
     margin-bottom: 20px;
-  }
-  
-  .course-header {
+}
+
+.course-header {
     display: flex;
     justify-content: space-between; /* Push elements to the edges */
     align-items: flex-start; /* Vertically align items to the start */
     cursor: pointer;
     margin-bottom: 10px; /* Add some space below the header */
     width: 100%; /* Ensure full width for correct button positioning */
-  }
-  
-  .course-header .header-actions {
+}
+
+.course-header .header-actions {
     position: relative; /* relative positioning */
     top: 0; /* Reset top */
     transform: none; /* Remove vertical centering */
@@ -72,28 +104,28 @@
     gap: 10px; /* Increased gap */
     z-index: 2; /* Ensure buttons are above grade */
     align-items: flex-start; /* Vertically align with course details */
-  }
-  
-  
-  .course-details {
+}
+
+
+.course-details {
     flex-grow: 1;
     margin-right: auto; /* Push course details to the left */
     display: flex; /* Use flexbox to align name and instructor */
     flex-direction: column;
     align-items: flex-start; /* Align items to the start (top) */
-  }
-  
-  .course-name {
+}
+
+.course-name {
     font-weight: bold;
     margin-bottom: 5px;
-  }
-  
-  .instructor {
+}
+
+.instructor {
     font-size: 0.9em;
     color: #ccc;
-  }
-  
-  .grade {
+}
+
+.grade {
     width: 60px;
     height: 40px;
     border-radius: 8px;
@@ -104,15 +136,15 @@
     color: black;
     order: -1; /* Place grade to the left */
     margin-right: 10px;
-  }
-  
-  .course-actions {
+}
+
+.course-actions {
     display: flex;
     gap: 10px;
-  }
-  
-  .edit-button,
-  .delete-button {
+}
+
+.edit-button,
+.delete-button {
     padding: 8px 16px;
     border: none;
     border-radius: 20px;
@@ -125,43 +157,43 @@
     justify-content: center;
     position: relative; /* Needed for absolute positioning of grade */
     overflow: visible;
-  }
-  
-  .edit-button {
+}
+
+.edit-button {
     background-color: #ffc107;
     color: black;
-  }
-  
-  .edit-button:hover {
+}
+
+.edit-button:hover {
     background-color: #e0a800;
-  }
-  
-  .delete-button {
+}
+
+.delete-button {
     background-color: #dc3545;
     color: white;
     margin-right: 20px;
-  }
-  
-  .delete-button:hover {
+}
+
+.delete-button:hover {
     background-color: #c82333;
-  }
-  
-  .edit-button,
-  .delete-button {
+}
+
+.edit-button,
+.delete-button {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .semester-dropdown {
+}
+
+.semester-dropdown {
     position: relative;
-  }
-  
-  .semester-download {
+}
+
+.semester-download {
     /* Ensure this has relative positioning */
     position: relative;
-  }
-  
-  .semester-button,
-  .download-button {
+}
+
+.semester-button,
+.download-button {
     /* Apply consistent button styling */
     padding: 10px 15px;
     border: 1px solid #ccc;
@@ -170,52 +202,13 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-  }
-  
-  .dropdown-icon {
+}
+
+.dropdown-icon {
     margin-left: 5px;
-  }
-  
-  .dropdown-content {
-    position: absolute;
-    top: 100%;
-    /* Position below the button */
-    left: 0;
-    z-index: 10;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 5px 5px;
-    background-color: white;
-    width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: none;
-  }
-  
-  .semester-dropdown.open .dropdown-content,
-  .semester-download.open .dropdown-content{
-    display: block;
-  }
-  
-  .dropdown-content button {
-    display: block;
-    width: 100%;
-    padding: 10px 15px;
-    text-align: left;
-    border: none;
-    background: none;
-    cursor: pointer;
-  }
-  
-  .dropdown-content button:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .dropdown-content button.active {
-    background-color: #e0e0e0;
-    font-weight: bold;
-  }
-  
-  .course-dropdown {
+}
+
+.course-dropdown {
     margin-top: 10px;
     padding: 10px;
     /* Removed position: absolute */
@@ -224,20 +217,20 @@
     background-color: #060505;
     border-top: 1px solid #ccc;
     /* Removed width: calc(100% + 30px); */
-  }
-  
-  .weight-sections-container {
+}
+
+.weight-sections-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
-  }
-  
-  .weight-section {
+}
+
+.weight-section {
     margin-bottom: 15px;
-  }
-  
-  .weight-header {
+}
+
+.weight-header {
     background-color: #222; /* Changed to black */
     color: #fff;
     padding: 10px;
@@ -246,25 +239,25 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
-  }
-  
-  .weight-header-content {
+}
+
+.weight-header-content {
     display: flex;
     justify-content: space-between;
     width: 100%;
     align-items: center;
-  }
-  
-  .weight-type {
+}
+
+.weight-type {
     font-weight: bold;
-  }
-  
-  .assessment-list {
+}
+
+.assessment-list {
     padding-left: 20px;
     margin-top: 10px;
-  }
-  
-  .assessment-item {
+}
+
+.assessment-item {
     margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
@@ -272,5 +265,4 @@
     background-color: #222;
     border-radius: 5px;
     padding: 5px;
-  }
-  
+}

@@ -198,6 +198,7 @@ const CourseItem = ({ c, onDelete, onEdit }) => {
   const [weights, setWeights] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [gradeDisplayMode, setGradeDisplayMode] = useState('cumulative'); // 'cumulative' or 'current'
   const { userId } = useContext(UserContext);
   const fetchRef = useRef();
   const [initialFetchDone, setInitialFetchDone] = useState(false);
@@ -312,7 +313,7 @@ const CourseItem = ({ c, onDelete, onEdit }) => {
     }));
   }, [assessments, weights, c.CourseID]);
 
-  // Calculate overall grade
+  // Calculate overall grade considering the display mode
   const overallGrade = useMemo(() => {
     if (weights.length === 0 || assessments.length === 0) return c.OverallGrade || 0;
     
@@ -328,20 +329,9 @@ const CourseItem = ({ c, onDelete, onEdit }) => {
       assessments
     };
     
-    const calculatedGrade = calculateOverallGrade(courseData);
-    // Ensure the result is a number
-    const result = isNaN(calculatedGrade) ? 0 : calculatedGrade;
-    
-    // Log the grade change
-    console.log(`Course ${c.CourseName} (ID: ${c.CourseID}) grade updated:`, {
-      previousGrade: c.OverallGrade || 0,
-      newGrade: result,
-      weights: mappedWeights.map(w => ({ type: w.AssessmentType, percentage: w.WeightPercentage })),
-      assessmentCount: assessments.length
-    });
-    
-    return result;
-  }, [weights, assessments, c.OverallGrade, c.CourseID, c.CourseName]);
+    const { grade } = calculateOverallGrade(courseData, gradeDisplayMode === 'current');
+    return grade;
+  }, [weights, assessments, c.OverallGrade, gradeDisplayMode]);
 
   const gradeColor = useMemo(() => {
     return getGradeColor(overallGrade);
@@ -376,7 +366,7 @@ const CourseItem = ({ c, onDelete, onEdit }) => {
             ) : (
               <>
                 {/* Add Weight Form */}
-                <div style={{ padding: '10px 20px' }}>
+                <div style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   {addingWeight ? (
                     <div className="weight-editor">
                       <div className="weight-editor-header">
@@ -407,12 +397,50 @@ const CourseItem = ({ c, onDelete, onEdit }) => {
                       </div>
                     </div>
                   ) : (
-                    <button
-                      className="save-button"
-                      onClick={() => setAddingWeight(true)}
-                    >
-                      Add Assessment Type
-                    </button>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                      <button
+                        className="save-button"
+                        onClick={() => setAddingWeight(true)}
+                      >
+                        Add Assessment Type
+                      </button>
+
+                      <div style={{ 
+                        display: 'flex', 
+                        background: '#f0f0f0', 
+                        borderRadius: '4px',
+                        padding: '2px'
+                      }}>
+                        <button
+                          onClick={() => setGradeDisplayMode('current')}
+                          style={{
+                            padding: '4px 8px',
+                            border: 'none',
+                            borderRadius: '3px',
+                            background: gradeDisplayMode === 'current' ? '#4CAF50' : 'transparent',
+                            color: gradeDisplayMode === 'current' ? 'white' : '#333',
+                            cursor: 'pointer',
+                            fontSize: '0.9em'
+                          }}
+                        >
+                          Current Average
+                        </button>
+                        <button
+                          onClick={() => setGradeDisplayMode('cumulative')}
+                          style={{
+                            padding: '4px 8px',
+                            border: 'none',
+                            borderRadius: '3px',
+                            background: gradeDisplayMode === 'cumulative' ? '#4CAF50' : 'transparent',
+                            color: gradeDisplayMode === 'cumulative' ? 'white' : '#333',
+                            cursor: 'pointer',
+                            fontSize: '0.9em'
+                          }}
+                        >
+                          Cumulative Progress
+                        </button>
+                      </div>
+                    </div>
                   )}
                 </div>
                 

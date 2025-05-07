@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import CreditSummary from './CreditSummary';
  
 const UserProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -26,17 +27,18 @@ const UserProfile = () => {
         setError('Failed to load profile');
       });
  
- 
-    axios.get(`http://localhost:5050/api/transcripts/${userId}`)
-      .then(res => {
-      setGpa(res.data.CumulativeGPA);  
+    axios.get(`http://localhost:5050/api/transcripts/${userId}`, {
+      headers: { 'x-user-id': userId }
     })
-    .catch(err => {
-      console.error(err);
-      setError('Failed to load GPA');
-    });
- 
-}, []);
+      .then(res => {
+        const gpaValue = res.data?.CumulativeGPA;
+        setGpa(typeof gpaValue === 'number' ? gpaValue.toFixed(2) : gpaValue || 'N/A');
+      })
+      .catch(err => {
+        console.error(err);
+        setGpa('N/A');
+      });
+  }, []);
  
   const handleEdit = () => {
     navigate('/edit-profile');
@@ -58,15 +60,16 @@ const UserProfile = () => {
       <p style={{ marginBottom: '12px' }}>
         <strong>Email:</strong> {profile.Email}
       </p>
-      <p style={{ marginBottom: '25px' }}>
+      <p style={{ marginBottom: '12px' }}>
         <strong>Phone Number:</strong> {profile.PhoneNumber}
       </p>
-      <p style={{ marginBottom: '25px' }}>
+      <p style={{ marginBottom: '12px' }}>
         <strong>GPA:</strong> {gpa !== null ? gpa : 'Loading GPA...'}
       </p>
+
+      {profile && <CreditSummary userId={localStorage.getItem('userId')} />}
  
- 
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
         <button
           onClick={handleEdit}
           style={{

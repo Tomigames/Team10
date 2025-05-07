@@ -25,6 +25,10 @@ const routes = [
     component: "NotifApp",
   },
   {
+    path: "/transcript",
+    component: "TranscriptDownloader",
+  },
+  {
     path: "/edit-profile",
     exact: true,
     component: "ProfileEdit",
