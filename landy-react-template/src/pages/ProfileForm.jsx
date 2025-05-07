@@ -24,7 +24,18 @@ const UserProfile = () => {
         console.error(err);
         setError('Failed to load profile');
       });
-  }, []);
+  
+
+    axios.get(`http://localhost:5050/api/transcripts/${userId}`)
+      .then(res => {
+      setGpa(res.data.FinalGPA);  
+    })
+    .catch(err => {
+      console.error(err);
+      setError('Failed to load GPA');
+    });
+
+}, []);
 
   const handleEdit = () => {
     navigate('/edit-profile');
