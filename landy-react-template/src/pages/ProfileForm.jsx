@@ -17,7 +17,7 @@ const UserProfile = () => {
       return;
     }
  
-    axios.get(`http://localhost:5050/api/users/profile/${userId}`)
+    axios.get(`http://localhost:5051/api/users/profile/${userId}`)
       .then(res => {
         setProfile(res.data);
         console.log('Profile response:', res.data);
@@ -27,7 +27,7 @@ const UserProfile = () => {
         setError('Failed to load profile');
       });
  
-    axios.get(`http://localhost:5050/api/transcripts/${userId}`, {
+    axios.get(`http://localhost:5051/api/transcripts/${userId}`, {
       headers: { 'x-user-id': userId }
     })
       .then(res => {
@@ -49,7 +49,7 @@ const UserProfile = () => {
  
   return (
     <div style={{ padding: '30px', maxWidth: '600px', margin: '0 auto', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '30px', color: '#333' }}>Your Profile</h1>
+      <h1 style={{ textAlign: 'center', marginBottom: '30px', color: '#fff' }}>Your Profile</h1>
  
       <p style={{ marginBottom: '12px' }}>
         <strong>First Name:</strong> {profile.FirstName}

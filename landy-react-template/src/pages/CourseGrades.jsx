@@ -33,7 +33,7 @@ const CourseGrades = ({ userId }) => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(`http://localhost:5050/`, {
+        const response = await axios.get(`http://localhost:5051/`, {
           headers: {
             'x-user-id': userId
           }
@@ -169,10 +169,10 @@ const CourseGrades = ({ userId }) => {
        
         // fetch course details and assessments
         const [courseRes, assessmentsRes] = await Promise.all([
-          axios.get(`http://localhost:5050/api/courses/${selectedCourseId}`, {
+          axios.get(`http://localhost:5051/api/courses/${selectedCourseId}`, {
             headers: { 'x-user-id': userId }
           }),
-          axios.get(`http://localhost:5050/api/courses/${selectedCourseId}/assessments`, {
+          axios.get(`http://localhost:5051/api/courses/${selectedCourseId}/assessments`, {
             headers: { 'x-user-id': userId }
           })
         ]);

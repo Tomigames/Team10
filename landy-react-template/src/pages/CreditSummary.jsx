@@ -15,7 +15,7 @@ const CreditSummary = () => {
       
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:5050/api/users/${userId}/credits`, {
+        const res = await axios.get(`http://localhost:5051/api/users/${userId}/credits`, {
           headers: { 'x-user-id': userId }
         });
         setCredits(res.data);

@@ -12,7 +12,7 @@ import './App.css';
 
 /* ------------ API Helper ------------ */
 export const api = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE || 'http://localhost:5050',
+  baseURL: process.env.REACT_APP_API_BASE || 'http://localhost:5051',
   headers: { 'Content-Type': 'application/json' }
 });
 

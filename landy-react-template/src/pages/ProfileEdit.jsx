@@ -17,7 +17,7 @@ const ProfileEdit = () => {
 
   const handleEmailLoad = async () => {
     try {
-      const res = await axios.get(`http://localhost:5050/api/users/user?email=${emailInput}`);
+      const res = await axios.get(`http://localhost:5051/api/users/user?email=${emailInput}`);
       setFormData(res.data);
       setProfileLoaded(true);
       setMessage({ text: 'Profile loaded!', type: 'success' });
@@ -54,7 +54,7 @@ const ProfileEdit = () => {
     }
 
     try {
-      const response = await axios.put('http://localhost:5050/api/users/update', formData);
+      const response = await axios.put('http://localhost:5051/api/users/update', formData);
       setMessage({ text: 'Profile updated successfully!', type: 'success' });
     } catch (err) {
       setMessage({ text: err.response?.data?.message || 'Error updating profile', type: 'error' });

@@ -16,7 +16,7 @@ function LoginPage() {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5050/api/users/login', {
+      const response = await fetch('http://localhost:5051/api/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -41,15 +41,8 @@ function LoginPage() {
   return (
     <div className="container mt-5">
       <div style={{ display: 'inline-block' }}>
-        <img 
-          src="/../images/gradeimg.png" 
-          alt="Login" 
-          style={{ 
-            maxWidth: '100%', 
-            borderRadius: '8px', 
-            boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
-          }} 
-        />
+        
+        
       </div>
       <div className="row justify-content-center">
         <div className="col-md-6">
@@ -80,7 +73,7 @@ function LoginPage() {
                     required
                   />
                 </div>
-                <p style={{ fontSize: '0.9em', textAlign: 'center', marginBottom: '10px', marginTop: '10px', marginRight: '455px' }}>
+                <p style={{ fontSize: '0.9em', textAlign: 'center', marginBottom: '10px', marginTop: '10px', marginRight: '430px' }}>
                   Don’t have an account? <a href="/signup">Sign up</a>
                 </p>
                 <button role="button" className="button">Login</button>

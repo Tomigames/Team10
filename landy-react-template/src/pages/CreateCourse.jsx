@@ -16,7 +16,7 @@ function CreateCourse() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5050/course', {
+    axios.post('http://localhost:5051/course', {
       UserId: userId, // Send the userId from the context
       CourseName: courseName,
       Instructor: instructor,

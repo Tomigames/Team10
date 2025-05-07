@@ -8,39 +8,19 @@ const NotifPage = ({ goTo }) => {
 
   useEffect(() => {
     setNotifications([
-      '📬 You set a GPA goal of 3.5',
       '⚠️ Low grade alert enabled',
       '✅ Follow-up alert was saved',
-      '📈 Your average GPA is 3.3',
       '📩 You opted in for email alerts',
-      '🛎️ A new grade was posted',
-      '🚨 GPA fell below 3.0',
-      '📊 You received a 95% on Math Quiz',
-      '🎉 New assignment grade added',
-      '💬 Advisor sent you a message',
-      '📉 You missed the GPA goal for March',
-      '🔔 Reminder: Chemistry exam tomorrow',
-      '📚 New grade posted for History paper',
       '📤 Your transcript was updated',
       '✅ Triggers updated successfully',
-      '🔄 Notification settings synced',
-      '📝 Assignment “Essay 2” was graded',
-      '⏰ You enabled follow-up alerts',
-      '📦 Weekly performance summary generated',
-      '🎯 Goal progress: 92% toward GPA goal',
       '📥 You set email as your preference',
-      '🎓 Final GPA for semester is 3.44',
-      '📢 New semester begins next week',
-      '🛠️ App updated with new features!',
-      '📨 New feedback on last test',
-      '🧠 Learning module completed'
     ]);
   
-    fetch('http://127.0.0.1:5050/api/gpa-goal')
+    fetch('http://127.0.0.1:5051/api/gpa-goal')
       .then(res => res.json())
       .then(data => setGpaGoal(data));
   
-    fetch('http://127.0.0.1:5050/api/notification-triggers')
+    fetch('http://127.0.0.1:5051/api/notification-triggers')
       .then(res => res.json())
       .then(data => setTriggers(data));
   }, []);
@@ -88,7 +68,7 @@ const NotifPage = ({ goTo }) => {
           <h4>GPA Goal</h4>
           {gpaGoal ? (
             <p>
-              Goal: <strong>{gpaGoal.goal}</strong> — via <strong>{gpaGoal.preference}</strong>
+              Goal: <strong>{gpaGoal.goal}</strong> Notifed by: <strong>{gpaGoal.preference}</strong>
             </p>
           ) : (
             <p>Loading GPA goal...</p>

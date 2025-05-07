@@ -810,5 +810,5 @@ app.get('/api/transcripts/:userId', async (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5051;
 app.listen(PORT, () => console.log(`Backend listening on port ${PORT}`));

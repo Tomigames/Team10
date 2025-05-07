@@ -14,7 +14,7 @@ const TranscriptDownloader = () => {
   useEffect(() => {
     const fetchTranscript = async () => {
       try {
-        const response = await axios.get(`http://localhost:5050/api/transcripts/${userId}`, {
+        const response = await axios.get(`http://localhost:5051/api/transcripts/${userId}`, {
           headers: { 'x-user-id': userId }
         });
         

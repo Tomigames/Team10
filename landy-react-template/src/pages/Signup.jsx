@@ -77,7 +77,7 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5050/api/users/signup', formData);
+      const response = await axios.post('http://localhost:5051/api/users/signup', formData);
       setMessage({ text: 'Signup successful! Redirecting to login...', type: 'success' });
       setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
