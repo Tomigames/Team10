@@ -93,11 +93,12 @@ const Header = ({ t }: { t: TFunction }) => {
       <CustomNavLinkSmall onClick={handleTranscriptClick} style={linkStyle}>
         <Span style={spanStyle}>{t("Transcript")}</Span>
       </CustomNavLinkSmall>
-        <CustomNavLinkSmall style={{ width: "180px" }} onClick={handleUserProfileClick}>
+      <CustomNavLinkSmall style={{ width: "180px" }} onClick={() => nav("/login")}>
           <Span>
-            <Button color="rgb(200, 100, 57)">{t("LogIn/Out")}</Button>
+            <Button color="rgb(200, 100, 57)">{t("Log Out")}</Button>
           </Span>
         </CustomNavLinkSmall>
+ 
       </>
     );
   };
