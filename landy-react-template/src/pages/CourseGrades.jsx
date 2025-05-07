@@ -33,7 +33,7 @@ const CourseGrades = ({ userId }) => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(`http://localhost:5051/`, {
+        const response = await axios.get(`http://localhost:5050/`, {
           headers: {
             'x-user-id': userId
           }

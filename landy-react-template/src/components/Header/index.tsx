@@ -54,6 +54,16 @@ const Header = ({ t }: { t: TFunction }) => {
   };
 
   const MenuItem = () => {
+    const linkStyle = {
+      fontSize: "16px",
+      padding: "4px 8px",
+      margin: "0 4px",
+      display: "inline-block"
+    };
+  
+    const spanStyle = {
+      fontSize: "19px"
+    };
     const scrollTo = (id: string) => {
       const element = document.getElementById(id) as HTMLDivElement;
       element.scrollIntoView({ behavior: "smooth" });
@@ -61,21 +71,22 @@ const Header = ({ t }: { t: TFunction }) => {
     };
     return (
       <>
-        <CustomNavLinkSmall onClick={handleCoursesClick}>
-          <Span>{t("Courses and Grades")}</Span>
-        </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={handleWhatIfCalculatorClick}>
-          <Span>{t("What-If Calculator")}</Span>
-        </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("product")}>
-          <Span>{t("Transcript")}</Span>
-        </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={handleUserNotifsClick}>
-          <Span>{t("Notifications")}</Span>
-        </CustomNavLinkSmall>
+        <CustomNavLinkSmall onClick={handleCoursesClick} style={linkStyle}>
+        <Span style={spanStyle}>{t("Courses and Grades")}</Span>
+      </CustomNavLinkSmall>
+      <CustomNavLinkSmall onClick={handleWhatIfCalculatorClick} style={linkStyle}>
+        <Span style={spanStyle}>{t("What-If Calculator")}</Span>
+      </CustomNavLinkSmall>
+
+      <CustomNavLinkSmall onClick={handleUserNotifsClick} style={linkStyle}>
+        <Span style={spanStyle}>{t("Notifications")}</Span>
+      </CustomNavLinkSmall>
+      <CustomNavLinkSmall onClick={handleUserProfileClick} style={linkStyle}>
+        <Span style={spanStyle}>{t("User Profile")}</Span>
+      </CustomNavLinkSmall>
         <CustomNavLinkSmall style={{ width: "180px" }} onClick={handleUserProfileClick}>
           <Span>
-            <Button color="rgb(200, 100, 57)">{t("User Profile")}</Button>
+            <Button color="rgb(200, 100, 57)">{t("LogIn/Out")}</Button>
           </Span>
         </CustomNavLinkSmall>
       </>

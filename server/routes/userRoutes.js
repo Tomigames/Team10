@@ -54,4 +54,21 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/profile/:id', async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const [rows] = await db.query('SELECT * FROM user WHERE UserID = ?', [userId]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Database error' });
+  }
+});
+
 module.exports = router;
