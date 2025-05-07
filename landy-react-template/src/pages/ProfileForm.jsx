@@ -49,6 +49,10 @@ const UserProfile = () => {
       <p style={{ marginBottom: '25px' }}>
         <strong>Phone Number:</strong> {profile.PhoneNumber}
       </p>
+      <p style={{ marginBottom: '25px' }}>
+        <strong>GPA:</strong> {profile.GPA || 'N/A'}
+      </p>
+
 
       <div style={{ textAlign: 'center' }}>
         <button
