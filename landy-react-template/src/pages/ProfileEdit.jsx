@@ -8,7 +8,8 @@ const ProfileEdit = () => {
     first_name: '',
     last_name: '',
     email: '',
-    phone: ''
+    phone: '',
+    gpa: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -163,6 +164,19 @@ const ProfileEdit = () => {
             />
             {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
           </div>
+
+          {/* GPA (read-only) */}
+          <div style={{ marginBottom: '15px' }}>
+            <label>GPA:</label>
+            <div style={{
+                    padding: '8px',
+                    backgroundColor: '#f5f5f5',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px'
+                    }}>
+                  {formData.gpa || 'N/A'}
+                  </div>
+              </div>
 
           <button
             type="submit"
