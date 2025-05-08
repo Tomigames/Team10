@@ -112,7 +112,7 @@ Follow the instructions below to set up and run both the frontend and backend of
     Open your terminal or command prompt and navigate to the directory containing the frontend code.
 
     ```bash
-    cd frontend
+    cd landy-react-template
     ```
 
 2.  **Install Dependencies:**
@@ -152,7 +152,7 @@ Follow the instructions below to set up and run both the frontend and backend of
     Start the Node.js backend server using the command:
 
     ```bash
-    node server.js
+    node app.js
     ```
 
     Replace `server.js` with the actual name of your main backend server file if it's different. The backend server will typically run on a specific port (e.g., `http://localhost:5000`), which will be defined in your backend code.
